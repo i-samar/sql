@@ -1,0 +1,62 @@
+SELECT *
+FROM Products;
+
+SELECT prod_name, prod_id
+FROM Products;
+
+SELECT --columns you wish to see
+FROM --table name
+LIMIT --Number of records;
+
+--Creating your own tables
+
+CREATE TABLE Shoes
+(
+ID char(10) PRIMARY KEY,
+Brand char(10) NOT NULL,
+Type char(250) NOT NULL,
+Color char(25) NOT NULL,
+Price decimals(8,2) NOT NULL,
+Desc Varchar(750) NULL
+);
+
+--Adding Data to the table
+INSERT INTO Shoes
+VALUES ('1435'
+       ,'Gucci'
+	   ,'Slippers'
+	   ,'Pink'
+	   ,'695.00'
+	   ,NULL
+			 );
+			 
+--Adding Data to the table
+INSERT INTO Shoes
+	   (ID
+	   ,Brand
+	   ,Type
+	   ,Color
+	   ,Price
+	   ,Desc
+	   )
+VALUES ('1435'
+       ,'Gucci'
+	   ,'Slippers'
+	   ,'Pink'
+	   ,'695.00'
+	   ,NULL
+			 );
+			 
+
+--Creating temporary tables
+
+CREATE TEMPORARY TABLE Sandals AS
+ (
+	SELECT *
+	FROM shoes
+	WHERE shoe_type = 'sandals' 
+  )
+
+/* multiple
+   line
+   comment */
