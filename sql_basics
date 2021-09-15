@@ -60,3 +60,156 @@ CREATE TEMPORARY TABLE Sandals AS
 /* multiple
    line
    comment */
+   
+--Clauses and Operators in SQL
+
+--Basics of Filtering with SQL
+
+--SELECT column_name, column_name
+--FROM table_name
+--WHERE column_name operator value;
+
+/* Operator
+
+= Equal
+<> Not equal 
+> Greater than
+< Less than
+>= Greater than or equal
+<= Less than or equal
+BETWEEN Between an inclusive range
+IS NULL Is a null value
+
+*/
+
+--Filtering on single condition
+
+SELECT Productname
+,UnitPrice
+,SupplierID
+FROM Products
+WHERE ProductName = 'Tofu';
+
+SELECT Productname
+,UnitPrice
+,SupplierID
+FROM Products
+WHERE ProductName <> 'Alice Mutton';
+
+SELECT Productname
+,UnitPrice
+,SupplierID
+FROM Products
+WHERE ProductName IS NULL;
+
+
+SELECT Productname
+,UnitPrice
+,SupplierID
+FROM Products
+WHERE UnitPrice >= 75;
+
+SELECT Productname
+,UnitPrice
+,SupplierID
+FROM Products
+WHERE UnitPrice BETWEEN 15 AND 80;
+
+--in OPERATOR
+
+SELECT
+ProductID
+, UnitPrice
+, SupplierID
+FROM Products
+WHERE SupplierID IN (9, 10, 11);
+
+
+--DBMS will not evaluate the second conditions in a WHERE clause if the first condition is met
+
+SELECT
+ProductID
+, UnitPrice
+, SupplierID
+, ProductName
+FROM Products
+WHERE ProductName = 'Tofu' OR 'Konbu';
+
+--NOT Operator
+
+SELECT *
+FROM Employees
+WHERE NOT City='London' AND
+NOT City='Seattle'
+
+
+--USING wildcards in SQL
+
+/*
+%PIZZA  - Grabs anything ending with the word pizza
+Pizza% - Grabs anything after the word pizza
+%pizza% - Grabs anything before and after the word pizza
+
+'S%E' - Grabs anything that starts with "S" and ends with "E"
+'t%@gmail.com Grabs gmail addresses that start with "t"
+*/
+
+--SORTING with ORDER BY
+
+SELECT something
+FROM database
+ORDER BY chracteristic
+
+--Sorting by column position
+
+ORDER BY 2,3
+
+--SORT DIRECTION
+
+--ASC Ascending Order
+--DESC Descending Order
+
+/* Math Operations */ 
+
+SELECT
+PrductID
+,UnitsOnOrder
+,UnitPrice
+,UnitsOnOrder * UnitPrice AS Total_Order_Cost
+FROM Products
+
+--Aggregate Functions
+
+AVG()
+MIN()
+MAX()
+SUM()
+COUNT()
+
+SELECT AVG(UnitPrice) AS avg_price
+FROM products
+
+--COUNT(*) count all the rows in the table containing values or NULL values
+--COUNT(Column) - Counts all the rows in a specific column ignoring NULL values
+
+SELECT COUNT(*) AS
+total_customers
+FROM Customers;
+
+SELECT COUNT(CustomerID) AS
+total_customers
+FROM Customers;
+
+--counting only unique customers 
+
+SELECT COUNT(DISTINCT CustomerID)
+FROM Customers
+
+SELECT SupplierID
+,COUNT(*) AS Num_Prod
+FROM Products
+WHERE UnitPrice >= 4
+GROUP BY SupplierID
+HAVING COUNT(*) >=2;
+
+
